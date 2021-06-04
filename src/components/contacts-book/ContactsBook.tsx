@@ -19,6 +19,7 @@ const useStyles = makeStyles({
 export const ContactsBook: FC = () => {
   const classes = useStyles();
   const { useAppSelector } = useHooks();
+
   const contacts = useAppSelector((state) => state.contacts);
 
   return (

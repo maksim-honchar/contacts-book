@@ -7,6 +7,9 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
+    addContact(state, action) {
+      state.push(action.payload);
+    },
     contactEdit(state, action) {
       const {
         id, userName, userLastName, userAge, userPager,
@@ -22,6 +25,6 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { contactEdit } = contactsSlice.actions;
+export const { addContact, contactEdit } = contactsSlice.actions;
 
 export default contactsSlice.reducer;

@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ContactProps } from '../types';
 import contactsData from '../utils/data.json';
+import { loadState } from '../utils/localStorage';
 
-const initialState = contactsData;
+const persistedState = loadState();
+
+const initialState = persistedState?.contacts || contactsData;
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -14,7 +18,7 @@ const contactsSlice = createSlice({
       const {
         id, userName, userLastName, userAge, userPager,
       } = action.payload;
-      const existingContact = state.find((contact) => contact.id === id);
+      const existingContact = state.find((contact: ContactProps) => contact.id === id);
       if (existingContact) {
         existingContact.name = userName;
         existingContact.lastname = userLastName;

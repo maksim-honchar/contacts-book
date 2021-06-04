@@ -4,6 +4,7 @@ import {
 import React, { FC } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import useHooks from '../../hooks';
+import { ContactProps } from '../../types';
 
 const useStyles = makeStyles({
   root: {
@@ -24,7 +25,7 @@ export const ContactPage: FC<RouteComponentProps<MatchParams>> = ({ match }) => 
   const history = useHistory();
 
   const currentUser = useAppSelector((state) => state.contacts
-    .find((user) => user.id === contactId));
+    .find((user: ContactProps) => user.id === contactId));
 
   const {
     name, lastname, age, pager, id,

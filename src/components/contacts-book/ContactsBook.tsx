@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import useHooks from '../../hooks';
 import { Contact } from './Contact';
+import { ContactProps } from '../../types';
 
 const useStyles = makeStyles({
   table: {
@@ -34,16 +35,14 @@ export const ContactsBook: FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {contacts.map(({
-            id, name, lastname, age, pager,
-          }) => (
+          {contacts.map((contact: ContactProps) => (
             <Contact
-              key={id}
-              id={id}
-              name={name}
-              lastname={lastname}
-              age={age}
-              pager={pager}
+              key={contact.id}
+              id={contact.id}
+              name={contact.name}
+              lastname={contact.lastname}
+              age={contact.age}
+              pager={contact.pager}
             />
           ))}
         </TableBody>

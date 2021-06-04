@@ -1,5 +1,5 @@
 import {
-  Button, Card, CardActions, CardContent, makeStyles, TextField, Typography,
+  Button, Card, CardActions, CardContent, makeStyles, TextField,
 } from '@material-ui/core';
 import React, {
   FC, useState, ChangeEvent, SyntheticEvent,
@@ -7,6 +7,7 @@ import React, {
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import useHooks from '../../hooks';
 import { contactEdit } from '../../redux/contactsSlice';
+import { ContactProps } from '../../types';
 
 const useStyles = makeStyles({
   root: {
@@ -28,7 +29,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const history = useHistory();
 
   const currentUser = useAppSelector((state) => state.contacts
-    .find((user) => user.id === contactId));
+    .find((user: ContactProps) => user.id === contactId));
 
   const {
     name, lastname, age, pager, id,

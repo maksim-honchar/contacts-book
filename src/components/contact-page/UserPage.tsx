@@ -47,11 +47,9 @@ export const UserPage:FC<UserPageProps> = ({ currentUser }) => {
           {name}
         </Typography>
         <Typography variant="h5" component="h2" />
-        <Typography className={classes.pos} color="textSecondary">
-          { ' '}
-        </Typography>
+        <Typography className={classes.pos} color="textSecondary" />
         <Typography variant="body2" component="p">
-          { ' '}
+          TEs
         </Typography>
       </CardContent>
       <CardActions>

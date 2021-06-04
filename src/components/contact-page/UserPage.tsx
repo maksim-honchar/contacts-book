@@ -10,17 +10,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 275,
     border: '1px solid red',
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
+    margin: 'auto',
   },
 });
 
@@ -43,17 +33,21 @@ export const UserPage:FC<UserPageProps> = ({ currentUser }) => {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.title} gutterBottom>
+        <Typography gutterBottom>
           {name}
         </Typography>
-        <Typography variant="h5" component="h2" />
-        <Typography className={classes.pos} color="textSecondary" />
-        <Typography variant="body2" component="p">
-          TEs
+        <Typography>
+          {lastname}
+        </Typography>
+        <Typography>
+          {age}
+        </Typography>
+        <Typography>
+          {pager}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">EDIT</Button>
       </CardActions>
     </Card>
   );

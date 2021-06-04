@@ -1,11 +1,25 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
+import { ContactPage } from './components/ContactPage';
+import { ContactsBook } from './components/contacts-book/ContactsBook';
+import { NavBar } from './components/NavBar';
 
 function App() {
   return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={ContactsBook} />
+        <Route exact path="/contact/:contactId" component={ContactPage} />
+        <Redirect to="/" />
+      </Switch>
+    </Router>
   );
 }
+
 export default App;

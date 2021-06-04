@@ -36,7 +36,6 @@ export const ContactsBook: FC = () => {
           {contacts.map(({
             id, name, lastname, age, pager,
           }) => (
-
             <Contact
               key={id}
               id={id}
@@ -45,7 +44,6 @@ export const ContactsBook: FC = () => {
               age={age}
               pager={pager}
             />
-
           ))}
         </TableBody>
       </Table>

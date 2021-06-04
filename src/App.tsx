@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import { ContactPage } from './components/ContactPage';
+import { ContactPage } from './components/contact-page/ContactPage';
 import { ContactsBook } from './components/contacts-book/ContactsBook';
 import { NavBar } from './components/NavBar';
 

@@ -3,8 +3,8 @@ import {
 } from '@material-ui/core';
 import React, { FC } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
-import useHooks from '../../hooks';
-import { Contact } from '../../types';
+import useHooks from '../../utils/hooks';
+import { Contact } from '../../utils/types';
 
 const useStyles = makeStyles({
   root: {

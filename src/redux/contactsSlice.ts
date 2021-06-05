@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { createServer } from 'miragejs';
 import {
   failded, loading, succeeded, urlFakeApi,
-} from '../../constants';
-import { Contact, InitialState } from '../types';
+} from '../utils/constants';
+import { Contact, InitialState } from '../utils/types';
 import contactsData from '../utils/data.json';
 import { loadState } from '../utils/localStorage';
 

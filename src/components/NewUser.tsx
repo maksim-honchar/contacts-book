@@ -6,7 +6,7 @@ import React, {
   FC, useState, ChangeEvent, SyntheticEvent,
 } from 'react';
 import { useHistory } from 'react-router-dom';
-import useHooks from '../hooks';
+import useHooks from '../utils/hooks';
 import { addContact } from '../redux/contactsSlice';
 
 const useStyles = makeStyles({

@@ -7,9 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import useHooks from '../../hooks';
+import useHooks from '../../utils/hooks';
 import { ContactFields } from './ContactFields';
-import { Contact } from '../../types';
+import { Contact } from '../../utils/types';
 import { loadState } from '../../utils/localStorage';
 import { fetchContacts } from '../../redux/contactsSlice';
 

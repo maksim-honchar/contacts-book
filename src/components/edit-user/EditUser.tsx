@@ -5,9 +5,9 @@ import React, {
   FC, useState, ChangeEvent, SyntheticEvent,
 } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
-import useHooks from '../../hooks';
+import useHooks from '../../utils/hooks';
 import { contactEdit } from '../../redux/contactsSlice';
-import { Contact } from '../../types';
+import { Contact } from '../../utils/types';
 
 const useStyles = makeStyles({
   root: {

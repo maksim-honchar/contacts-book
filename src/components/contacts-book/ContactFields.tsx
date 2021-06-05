@@ -1,6 +1,15 @@
-import { TableRow, TableCell } from '@material-ui/core';
+import { TableRow, TableCell, makeStyles } from '@material-ui/core';
 import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
+
+const useStyles = makeStyles({
+  tableRow: {
+    cursor: 'pointer',
+    '&:hover': {
+      background: '#fafafa',
+    },
+  },
+});
 
 interface ContactProps {
     name: string
@@ -11,6 +20,8 @@ interface ContactProps {
 }
 
 export const ContactFields: FC<ContactProps> = (props) => {
+  const classes = useStyles();
+
   const {
     name, lastname, age, pager, id,
   } = props;
@@ -20,7 +31,7 @@ export const ContactFields: FC<ContactProps> = (props) => {
   const handleClick = (idContact: string) => history.push(`/contact/${idContact}`);
 
   return (
-    <TableRow style={{ cursor: 'pointer' }} onClick={() => handleClick(id)}>
+    <TableRow className={classes.tableRow} onClick={() => handleClick(id)}>
       <TableCell component="th" scope="row">
         {name}
       </TableCell>

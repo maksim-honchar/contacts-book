@@ -1,18 +1,17 @@
 import {
   Button, Card, CardActions, CardContent, Grid, makeStyles, TextField,
 } from '@material-ui/core';
-import { nanoid } from '@reduxjs/toolkit';
 import React, {
   FC, useState, ChangeEvent, SyntheticEvent,
 } from 'react';
-import { useHistory } from 'react-router-dom';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
 import useHooks from '../utils/hooks';
-import { addContact } from '../redux/contactsSlice';
+import { contactEdit } from '../redux/contactsSlice';
+import { Contact } from '../utils/types';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 400,
-    minHeight: 300,
     margin: 'auto',
   },
   textField: {
@@ -26,43 +25,47 @@ const useStyles = makeStyles({
   },
 });
 
-export const NewUser: FC = () => {
+interface MatchParams {
+    contactId: string;
+}
+
+export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const classes = useStyles();
-  const { useAppDispatch } = useHooks();
+  const { contactId } = match.params;
+  const { useAppSelector, useAppDispatch } = useHooks();
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const [name, setUserName] = useState('');
-  const [lastname, setUserLastName] = useState('');
-  const [age, setUserAge] = useState<string | number>('');
-  const [pager, setUserPager] = useState<string | number>('');
-  const ageToNum = +age;
-  const pagerToNum = +pager;
+  const currentUser = useAppSelector(({ contacts: { contactsList } }) => contactsList
+    .find((user: Contact) => user.id === contactId));
 
-  const changeUserName = (e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value);
-  const changeUserLastName = (e: ChangeEvent<HTMLInputElement>) => setUserLastName(e.target.value);
-  const changeUserAge = (e: ChangeEvent<HTMLInputElement>) => setUserAge(e.target.value);
-  const changeUserPager = (e: ChangeEvent<HTMLInputElement>) => setUserPager(e.target.value);
+  const {
+    name, lastname, age, pager, id,
+  } = currentUser;
 
-  const canSave = name && lastname && age && pager;
+  const [userName, editUserName] = useState(name);
+  const [userLastName, editUserLastName] = useState(lastname);
+  const [userAge, editUserAge] = useState<string | number>(age);
+  const [userPager, editUserPager] = useState<string | number>(pager);
+
+  const changeUserName = (e: ChangeEvent<HTMLInputElement>) => editUserName(e.target.value);
+  const changeUserLastName = (e: ChangeEvent<HTMLInputElement>) => editUserLastName(e.target.value);
+  const changeUserAge = (e: ChangeEvent<HTMLInputElement>) => editUserAge(e.target.value);
+  const changeUserPager = (e: ChangeEvent<HTMLInputElement>) => editUserPager(e.target.value);
+
+  const canSave = userName && userLastName && userAge && userPager;
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (canSave) {
-      const id = nanoid();
-      dispatch(addContact({
-        id, name, lastname, age: ageToNum, pager: pagerToNum,
+      dispatch(contactEdit({
+        id, userName, userLastName, userAge, userPager,
       }));
-      history.push('/');
+      history.push(`/contact/${id}`);
     }
   };
 
-  const handleCancel = () => {
-    setUserName('');
-    setUserLastName('');
-    setUserAge('');
-    setUserPager('');
-  };
+  const handleCancel = () => history.push(`/contact/${id}`);
 
   return (
     <Card className={classes.root}>
@@ -75,7 +78,7 @@ export const NewUser: FC = () => {
                 fullWidth
                 label="name"
                 type="text"
-                value={name}
+                value={userName}
                 onChange={changeUserName}
               />
             </Grid>
@@ -84,7 +87,7 @@ export const NewUser: FC = () => {
                 fullWidth
                 label="lastname"
                 type="text"
-                value={lastname}
+                value={userLastName}
                 onChange={changeUserLastName}
               />
             </Grid>
@@ -93,7 +96,7 @@ export const NewUser: FC = () => {
                 fullWidth
                 label="age (numbers)"
                 type="number"
-                value={age}
+                value={userAge}
                 onChange={changeUserAge}
               />
             </Grid>
@@ -102,7 +105,7 @@ export const NewUser: FC = () => {
                 fullWidth
                 label="pager (numbers)"
                 type="number"
-                value={pager}
+                value={userPager}
                 onChange={changeUserPager}
               />
             </Grid>

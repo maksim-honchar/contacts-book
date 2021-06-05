@@ -1,16 +1,27 @@
 import {
-  Card, CardContent, Typography, CardActions, Button, makeStyles,
+  Typography, Button, makeStyles, Paper, TableContainer, Divider, Table, Grid,
 } from '@material-ui/core';
 import React, { FC } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import useHooks from '../../utils/hooks';
 import { Contact } from '../../utils/types';
+import { TableContant } from './TableContent';
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 275,
-    border: '1px solid red',
+  table: {
+    maxWidth: 400,
+    minHeight: 300,
     margin: 'auto',
+    background: 'white',
+  },
+  btnWrapper: {
+    margin: '20px auto',
+  },
+  btnBack: {
+    margin: '0 10px 10px 5px',
+  },
+  titleTable: {
+    paddingTop: 10,
   },
 });
 
@@ -32,26 +43,40 @@ export const ContactPage: FC<RouteComponentProps<MatchParams>> = ({ match }) => 
   } = currentUser;
 
   const handleClick = () => history.push(`/contact-edit/${id}`);
+  const toHome = () => history.push('/');
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography gutterBottom>
-          {name}
+    <div className={classes.table}>
+      <Paper>
+        <Typography
+          className={classes.titleTable}
+          align="center"
+          variant="h4"
+          color="textSecondary"
+        >
+          Contact
         </Typography>
-        <Typography>
-          {lastname}
-        </Typography>
-        <Typography>
-          {age}
-        </Typography>
-        <Typography>
-          {pager}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" onClick={handleClick}>EDIT</Button>
-      </CardActions>
-    </Card>
+      </Paper>
+      <Divider />
+      <TableContainer component={Paper}>
+        <Table>
+          <TableContant
+            name={name}
+            lastname={lastname}
+            age={age}
+            pager={pager}
+          />
+        </Table>
+      </TableContainer>
+      <Grid container justify="flex-end" className={classes.btnWrapper}>
+        <Grid item>
+          <Button color="primary" variant="contained" size="small" onClick={handleClick}>OK</Button>
+        </Grid>
+        <Grid item className={classes.btnBack}>
+          <Button color="primary" variant="outlined" size="small" onClick={toHome}>BACK</Button>
+        </Grid>
+      </Grid>
+    </div>
+
   );
 };

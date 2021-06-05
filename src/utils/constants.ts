@@ -3,3 +3,5 @@ export const succeeded = 'succeeded';
 export const failded = 'failded';
 
 export const urlFakeApi = '/fakeApi/contacts';
+
+export const newUser = '/new-user';

@@ -73,7 +73,7 @@ export const NewUser: FC = () => {
               <TextField
                 autoFocus
                 fullWidth
-                label="name"
+                label="First Name"
                 type="text"
                 value={name}
                 onChange={changeUserName}
@@ -82,7 +82,7 @@ export const NewUser: FC = () => {
             <Grid item className={classes.textField}>
               <TextField
                 fullWidth
-                label="lastname"
+                label="Last Name"
                 type="text"
                 value={lastname}
                 onChange={changeUserLastName}
@@ -91,7 +91,7 @@ export const NewUser: FC = () => {
             <Grid item className={classes.textField}>
               <TextField
                 fullWidth
-                label="age (numbers)"
+                label="Age"
                 type="number"
                 value={age}
                 onChange={changeUserAge}
@@ -100,7 +100,7 @@ export const NewUser: FC = () => {
             <Grid item className={classes.textField}>
               <TextField
                 fullWidth
-                label="pager (numbers)"
+                label="Pager"
                 type="number"
                 value={pager}
                 onChange={changeUserPager}

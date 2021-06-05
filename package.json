@@ -38,6 +38,7 @@
     "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.5.1",
     "lodash.throttle": "^4.1.1",
+    "miragejs": "^0.1.41",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",

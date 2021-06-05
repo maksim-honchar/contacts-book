@@ -10,7 +10,7 @@ interface ContactProps {
     id: string
 }
 
-export const Contact: FC<ContactProps> = (props) => {
+export const ContactFields: FC<ContactProps> = (props) => {
   const {
     name, lastname, age, pager, id,
   } = props;

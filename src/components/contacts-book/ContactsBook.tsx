@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,8 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import useHooks from '../../hooks';
-import { Contact } from './Contact';
-import { ContactProps } from '../../types';
+import { ContactFields } from './ContactFields';
+import { Contact } from '../../types';
+import { loadState } from '../../utils/localStorage';
+import { fetchContacts } from '../../redux/contactsSlice';
 
 const useStyles = makeStyles({
   table: {
@@ -19,9 +21,20 @@ const useStyles = makeStyles({
 
 export const ContactsBook: FC = () => {
   const classes = useStyles();
-  const { useAppSelector } = useHooks();
+  const { useAppSelector, useAppDispatch } = useHooks();
+  const dispatch = useAppDispatch();
+  const persistedState = loadState();
 
-  const contacts = useAppSelector((state) => state.contacts);
+  const contacts = useAppSelector((state) => state.contacts.contactsList);
+  const status = useAppSelector((state) => state.contacts.status);
+
+  const isFetch = !persistedState && status === 'idle';
+
+  useEffect(() => {
+    if (isFetch) {
+      dispatch(fetchContacts());
+    }
+  }, [dispatch, isFetch]);
 
   return (
     <TableContainer component={Paper}>
@@ -35,8 +48,8 @@ export const ContactsBook: FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {contacts.map((contact: ContactProps) => (
-            <Contact
+          {contacts.map((contact: Contact) => (
+            <ContactFields
               key={contact.id}
               id={contact.id}
               name={contact.name}

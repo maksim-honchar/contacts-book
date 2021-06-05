@@ -7,7 +7,7 @@ import React, {
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import useHooks from '../../hooks';
 import { contactEdit } from '../../redux/contactsSlice';
-import { ContactProps } from '../../types';
+import { Contact } from '../../types';
 
 const useStyles = makeStyles({
   root: {
@@ -28,8 +28,8 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const currentUser = useAppSelector((state) => state.contacts
-    .find((user: ContactProps) => user.id === contactId));
+  const currentUser = useAppSelector(({ contacts: { contactsList } }) => contactsList
+    .find((user: Contact) => user.id === contactId));
 
   const {
     name, lastname, age, pager, id,

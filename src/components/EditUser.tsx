@@ -55,7 +55,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
 
   const canSave = userName && userLastName && userAge && userPager;
 
-  const toContactId = () => history.push(`/contact/${id}`);
+  const toHome = () => history.push('/');
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -63,7 +63,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
       dispatch(contactEdit({
         id, userName, userLastName, userAge, userPager,
       }));
-      toContactId();
+      toHome();
     }
   };
 
@@ -76,7 +76,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
               <TextField
                 autoFocus
                 fullWidth
-                label="name"
+                label="First Name"
                 type="text"
                 value={userName}
                 onChange={changeUserName}
@@ -85,7 +85,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
             <Grid item className={classes.textField}>
               <TextField
                 fullWidth
-                label="lastname"
+                label="Last Name"
                 type="text"
                 value={userLastName}
                 onChange={changeUserLastName}
@@ -94,7 +94,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
             <Grid item className={classes.textField}>
               <TextField
                 fullWidth
-                label="age (numbers)"
+                label="Age"
                 type="number"
                 value={userAge}
                 onChange={changeUserAge}
@@ -103,7 +103,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
             <Grid item className={classes.textField}>
               <TextField
                 fullWidth
-                label="pager (numbers)"
+                label="Pager"
                 type="number"
                 value={userPager}
                 onChange={changeUserPager}
@@ -118,7 +118,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
             <Button color="primary" variant="contained" size="small" onClick={handleSubmit}>OK</Button>
           </Grid>
           <Grid item>
-            <Button color="primary" variant="outlined" size="small" onClick={toContactId}>CANCEL</Button>
+            <Button color="primary" variant="outlined" size="small" onClick={toHome}>CANCEL</Button>
           </Grid>
         </Grid>
       </CardActions>

@@ -46,6 +46,10 @@ const contactsSlice = createSlice({
         existingContact.pager = userPager;
       }
     },
+    contactDelite(state, action) {
+      const { payload } = action;
+      state.contactsList = state.contactsList.filter((contact: Contact) => contact.id !== payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchContacts.pending, (state) => {
@@ -62,6 +66,6 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { addContact, contactEdit } = contactsSlice.actions;
+export const { addContact, contactEdit, contactDelite } = contactsSlice.actions;
 
 export default contactsSlice.reducer;

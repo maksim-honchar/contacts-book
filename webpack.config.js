@@ -24,7 +24,7 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     hot: true,
-    historyApiFallback: true,
+    historyApiFallback: true, /* for safe reload page */
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -36,6 +36,6 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: '/',
+    publicPath: '/', /* for safe reload page */
   },
 };

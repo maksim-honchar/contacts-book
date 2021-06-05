@@ -55,17 +55,17 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
 
   const canSave = userName && userLastName && userAge && userPager;
 
+  const toContactId = () => history.push(`/contact/${id}`);
+
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (canSave) {
       dispatch(contactEdit({
         id, userName, userLastName, userAge, userPager,
       }));
-      history.push(`/contact/${id}`);
+      toContactId();
     }
   };
-
-  const handleCancel = () => history.push(`/contact/${id}`);
 
   return (
     <Card className={classes.root}>
@@ -118,7 +118,7 @@ export const EditUser: FC<RouteComponentProps<MatchParams>> = ({ match }) => {
             <Button color="primary" variant="contained" size="small" onClick={handleSubmit}>OK</Button>
           </Grid>
           <Grid item>
-            <Button color="primary" variant="outlined" size="small" onClick={handleCancel}>CANCEL</Button>
+            <Button color="primary" variant="outlined" size="small" onClick={toContactId}>CANCEL</Button>
           </Grid>
         </Grid>
       </CardActions>
